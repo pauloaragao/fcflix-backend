@@ -6,4 +6,3 @@ class Category:
         self.name = name
     
 
-print(vars(Category('Movie')))
