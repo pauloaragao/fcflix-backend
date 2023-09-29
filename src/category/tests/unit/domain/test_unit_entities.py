@@ -1,7 +1,7 @@
 import unittest
 from dataclasses import is_dataclass
 from datetime import datetime
-from src.category.domain.entities import Category
+from category.domain.entities import Category
 
 class TestCategoryUnit(unittest.TestCase):
 
@@ -9,27 +9,29 @@ class TestCategoryUnit(unittest.TestCase):
         self.assertTrue(is_dataclass(Category))
 
     def test_constructor(self):
-        category = Category(
-            name='Movie'
-            )
+        # Test the constructor with a obrigatory variable
+        category = Category(name='Movie')
         self.assertEqual(category.name, 'Movie')
         self.assertEqual(category.description, None)
         self.assertEqual(category.is_active, True)
         self.assertIsInstance(category.created_at, datetime)
 
+        # Another test the constructor with a different variable
         created_at=datetime.now()
         category = Category(
             name='Movie', 
             description='some description', 
             is_active=False, 
-            created_at=datetime.now()
+            created_at=created_at
             )
         self.assertEqual(category.name, 'Movie')
         self.assertEqual(category.description, 'some description')
         self.assertEqual(category.is_active, False)
         self.assertEqual(category.created_at, created_at)
+
     
     def test_if_created_at_is_generated_in_constructor(self):
+        #test if created_at is generated in constructor diferent times
         category1 = Category(name='Movie 1')
         category2 = Category(name='Movie 2')
         self.assertNotEqual(
