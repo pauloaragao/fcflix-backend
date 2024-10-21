@@ -38,8 +38,13 @@ class TestCategory(unittest.TestCase):
         cat_id = uuid4
         category = Category("Film", cat_id, "Description Film", False)
 
-        self.assertEqual(str(category), f"{category.name} - {category.description} [{category.id}] ({category.is_active})")
+        self.assertEqual(str(category),str(category), f"{category.name} - {category.description} [{category.id}] ({category.is_active})")
 
+    def test_category_representation_repr(self):
+        cat_id = uuid4
+        category = Category("Film", cat_id, "Description Film", False)
+
+        self.assertEqual(repr(category), f"<Category {category.name} ({category.id})>s")
 
 if __name__ == "__main__":
     unittest.main()
